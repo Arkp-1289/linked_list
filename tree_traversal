@@ -1,0 +1,60 @@
+class Node:
+    def __init__(self,data):
+        self.left=None
+        self.right=None
+        self.data=data
+    
+    def insert_node(self,data):
+        if self.data:
+            if self.data<data:
+                if self.right==None:
+                    self.right=Node(data)
+                else:
+                    self.right.insert_node(data)
+            else:
+                if self.left==None:
+                    self.left=Node(data)
+                else:
+                    self.left.insert_node(data)
+        else:
+            self.data=data        
+
+    def inorder(self):
+        if self.left :
+            self.left.inorder()
+        print(self.data,end=" ")
+        if self.right:
+            self.right.inorder()
+    def preorder(self):
+        if self:
+            print(self.data,end=" ")
+            if self.left :
+                self.left.preorder()
+            if self.right:
+                self.right.preorder()
+        else:
+            print("NO nodes")
+    
+    def postorder(self):
+        if self:
+            if self.left:
+                self.left.postorder()
+            if self.right:
+                self.right.postorder()
+            print(self.data,end=" ")
+    
+        else:
+            print("no nodes")
+
+b_tree=Node(3)
+for i in range(5):
+    n=int(input())
+    b_tree.insert_node(n)
+print("inorder: ",end=" ")
+b_tree.inorder()
+print()
+print("preorder: ",end=" ")
+b_tree.preorder()
+print()
+print("postorder: ",end=" ")
+b_tree.postorder()
